@@ -1,0 +1,222 @@
+@layout('layouts.principal')
+@section('main')
+<script>
+	function eliminar(index)
+	{
+		
+		const objeto=JSON.parse(localStorage.getItem('Pcart'))
+		objeto.cart.splice(index,1);
+
+		localStorage.setItem('Pcart', JSON.stringify(objeto));
+		location.reload();
+	}
+	async function mas(index)
+	{
+		const objeto=JSON.parse(localStorage.getItem('Pcart'))
+		objeto.cart[index].Quantity=parseInt(objeto.cart[index].Quantity)+1
+		
+		document.getElementById("quantity_"+index).value=parseInt(objeto.cart[index].Quantity)
+		localStorage.setItem('Pcart', JSON.stringify(objeto));
+
+		var respuesta=await axios.get('getProduct?id='+objeto.cart[index].Product).then(function (response2) {
+			
+			var total=formatCurrency("es-CO", "COP", 0, parseInt(response2.data.price)*parseInt(objeto.cart[index].Quantity));
+			document.getElementById("subtotal_"+index).innerHTML=total
+		})
+//		console.log("petición"+JSON.stringify(respuesta))
+		await Totals()
+	}
+	async function menos(index)
+	{
+		const objeto=JSON.parse(localStorage.getItem('Pcart'))
+		if(objeto.cart[index].Quantity>1)
+		{
+			objeto.cart[index].Quantity=parseInt(objeto.cart[index].Quantity)-1
+			document.getElementById("quantity_"+index).value=parseInt(objeto.cart[index].Quantity)
+			localStorage.setItem('Pcart', JSON.stringify(objeto));
+			
+			var respuesta=await axios.get('getProduct?id='+objeto.cart[index].Product).then(function (response2) {
+			
+			var total=formatCurrency("es-CO", "COP", 0, parseInt(response2.data.price)*parseInt(objeto.cart[index].Quantity));
+			document.getElementById("subtotal_"+index).innerHTML=total
+			
+			})
+		}
+		await Totals()
+		
+	}
+	async function Totals()
+	{
+		subtotal=0
+		domicilio=0
+		const objeto=JSON.parse(localStorage.getItem('Pcart'))
+		objeto.cart.forEach(async (x,i) =>
+			{
+				j=i	
+				try{
+					var respuesta=await axios.get('getProduct?id='+objeto.cart[i].Product).catch(function (error) {
+							eliminar(i)
+							console.log("Producto no encontrado: "+error);
+						})
+					
+					respuesta=respuesta.data
+
+					var total=formatCurrency("es-CO", "COP", 0, parseInt(respuesta.price)*parseInt(objeto.cart[j].Quantity));
+					subtotal+=respuesta.price*objeto.cart[i].Quantity
+				}catch(error2)
+				{
+					console.log("error2: "+error2)
+				}
+				document.getElementById("subtotal").innerHTML=formatCurrency("es-CO", "COP", 0,subtotal)
+				document.getElementById("domicilio").innerHTML=formatCurrency("es-CO", "COP", 0,domicilio)
+				document.getElementById("total").innerHTML=formatCurrency("es-CO", "COP", 0,subtotal+domicilio)
+				document.getElementById("CART").value=JSON.stringify(objeto)
+			})
+	}
+	
+	$(document).ready(async function() {
+		try{
+			const objeto=JSON.parse(localStorage.getItem('Pcart'))
+			
+			console.log(JSON.stringify(objeto.cart))
+			var subtotal=0
+			var domicilio=0
+			//for(var i=0; i<objeto.cart.length;i++)
+			objeto.cart.forEach(async (x,i) =>
+			{
+				j=i	
+				try{
+					var respuesta = await axios.get('getProduct?id='+objeto.cart[i].Product).catch(function (error) {
+							eliminar(i)
+							console.log("Producto no encontrado: "+error);
+						})
+					
+					respuesta = respuesta.data
+
+					var total=formatCurrency("es-CO", "COP", 0, parseInt(respuesta.price)*parseInt(objeto.cart[j].Quantity));
+					var appe = document.getElementById("tabody")
+					if(respuesta.image==null)
+					{
+						respuesta.image="/placeholder.png"
+					}else
+					{
+						axios.get('https://boutiqueathenea.co/'+respuesta.id+".png")
+						.then(function (response) {
+							console.log("Imagen Ok");
+						})
+						.catch(function (error) {
+							// handle error
+							console.log("Imagen No Ok");
+						})
+					}
+					
+					$(appe).after('<tr><td><div class="thumb_cart"><img  src="'+
+						respuesta.image+'" data-src="'+respuesta.image+'" class="lazy"'+
+						' alt="'+respuesta.name+'"></div><span class="item_cart"><a href="/product_detail/'+respuesta.id+'">'+
+						respuesta.name+'</a></span></td><td><strong>'+respuesta.price2+
+							'</strong></td><td><div class="numbers-row"><input type="text" value="'+objeto.cart[i].Quantity+
+								'" id="quantity_'+i+'" class="qty2" name="quantity_'+i+'">'+
+								'<div class="inc button_inc" onclick="mas('+i+')">+</div><div class="dec button_inc" onclick="menos('+i+')">-</div></div></td><td><strong id="subtotal_'+i+'">'+
+								total+'</strong></td><td class="options"><a href="#"><i class="ti-trash" onclick="eliminar('+i+')">'+
+									'</i></a></td></tr>');
+					subtotal+=respuesta.price*objeto.cart[i].Quantity
+				}catch(error2)
+				{
+					console.log("error2: "+error2)
+				}
+				document.getElementById("subtotal").innerHTML=formatCurrency("es-CO", "COP", 0,subtotal)
+				document.getElementById("domicilio").innerHTML=formatCurrency("es-CO", "COP", 0,domicilio)
+				document.getElementById("total").innerHTML=formatCurrency("es-CO", "COP", 0,subtotal+domicilio)
+				document.getElementById("CART").value=JSON.stringify(objeto)
+				
+
+				
+			});
+		}catch(error)//Si no hay productos redirige al index
+		{
+			window.location.href="/"
+		}
+	});
+
+	
+</script>
+
+	<main class="bg_gray">
+		<div class="container margin_30">
+		<div class="page_header">
+			<div class="breadcrumbs">
+				<ul>
+					<li><a href="index.html">Inicio</a></li>
+					<li>carrito de compras</li>
+				</ul>
+			</div>
+			<h1>Carrito de compras</h1>
+		</div>
+		<!-- /page_header -->
+		<table class="table table-striped cart-list" id="appe">
+							<thead>
+								<tr>
+									<th>
+										Productos
+									</th>
+									<th>
+										Precio
+									</th>
+									<th>
+										cantidad
+									</th>
+									<th>
+										subtotal
+									</th>
+									<th>
+										
+									</th>
+								</tr>
+							</thead>
+
+							<tbody id="tabody">
+								
+								
+								
+							</tbody>
+						</table>
+
+						<div class="row add_top_30 flex-sm-row-reverse cart_actions">
+						<div class="col-sm-4 text-right">
+							<button type="button" onclick="vaciar()" class="btn_1 gray">Vaciar carrito</button>
+						</div>
+					</div>
+					<!-- /cart_actions -->
+	
+		</div>
+		<!-- /container -->
+		
+		<div class="box_cart">
+			<div class="container">
+			<div class="row justify-content-end">
+				<div class="col-xl-4 col-lg-4 col-md-6">
+			<ul>
+				<li>
+					<span>Subtotal</span> <p id="subtotal">$0</p>
+				</li>
+				<li>
+					<span>Domicilio</span> <p id="domicilio">$0</p>
+				</li>
+				<li>
+					<span>Total</span> <p id="total">$0</p>
+				</li>
+			</ul>
+			<form method="POST" action="/checkout">
+				{{ csrfField() }}
+				<input type="hidden" name="CART" id="CART" value="">
+				<input type="submit" class="btn_1 full-width cart" value="Proceder a pago">
+			</form>		
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /box_cart -->
+		
+	</main>
+	<!--/main-->
+@endsection

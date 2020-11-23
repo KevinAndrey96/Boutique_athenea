@@ -1,0 +1,123 @@
+@layout('layouts.principal')
+@section('main')
+		
+	<main>
+		<div class="top_banner">
+			<div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.3)">
+				<div class="container">
+					<div class="breadcrumbs">
+						<ul>
+							<li><a href="index.html">Inicio</a></li>
+							<li>Categorias</li>
+						</ul>
+					</div>
+					<h1>BUSCA POR CATEGORÍA</h1>
+				</div>
+			</div>
+			<img src="img/bg_cat_shoes.jpg" class="img-fluid" alt="">
+		</div>
+		<!-- /top_banner -->
+		
+			<div id="stick_here"></div>		
+			<div class="toolbox elemento_stick">
+				<div class="container">
+				<ul class="clearfix">
+					
+					<li>
+						<a data-toggle="collapse" href="#filters" role="button" aria-expanded="false" aria-controls="filters">
+							<i class="ti-filter"></i><span>Filtros</span>
+						</a>
+					</li>
+				</ul>
+				<div class="collapse" id="filters"><div class="row small-gutters filters_listing_1">
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="dropdown">
+						<a href="#" data-toggle="dropdown" class="drop">Categorias</a>
+						<div class="dropdown-menu">
+							<div class="filter_type">
+									<ul>
+										<li>
+											<label class="container_check">Aseo <small>12</small>
+											  <input type="checkbox">
+											  <span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check">Medicamentos <small>24</small>
+											  <input type="checkbox">
+											  <span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check">Vitaminas <small>23</small>
+											  <input type="checkbox">
+											  <span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check">Cuidado cabello<small>11</small>
+											  <input type="checkbox">
+											  <span class="checkmark"></span>
+											</label>
+										</li>
+									</ul>
+									<a href="#0" class="apply_filter">Aplicar</a>
+								</div>
+						</div>
+					</div>
+					<!-- /dropdown -->
+				</div>
+				
+				
+				</div></div>
+				</div>
+			</div>
+			<!-- /toolbox -->
+
+			<div class="container margin_30">
+			<div class="row small-gutters">
+				@each(category in categories)
+				<div class="col-4 col-md-4 col-xl-2">
+					<div class="grid_item">
+						<figure>
+							<a href="/products_list/{{category.id}}">
+								<img class="img-fluid lazy" src="{{category.image}}" alt="{{category.name}}">
+							</a>
+						</figure>
+						<a href="product-detail-1.html">
+							<h3>{{category.name}}</h3>
+						</a>
+					</div>
+					<!-- /grid_item -->
+				</div>
+				@endeach				
+				
+			</div>
+				
+				
+				
+			<!-- /row -->
+				
+			<div class="pagination__wrapper">
+				<ul class="pagination">
+					<li><a href="#0" class="prev" title="previous page">&#10094;</a></li>
+					<li>
+						<a href="#0" class="active">1</a>
+					</li>
+					<li>
+						<a href="#0">2</a>
+					</li>
+					<li>
+						<a href="#0">3</a>
+					</li>
+					<li>
+						<a href="#0">4</a>
+					</li>
+					<li><a href="#0" class="next" title="next page">&#10095;</a></li>
+				</ul>
+			</div>
+				
+		</div>
+		<!-- /container -->
+	</main>
+@endsection

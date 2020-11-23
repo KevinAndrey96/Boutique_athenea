@@ -1,0 +1,374 @@
+@layout('layouts.principal')
+@section('main')
+<form method="GET" action="/search">
+	<main>
+		<div class="top_banner">
+			<div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.3)">
+				<div class="container">
+					<div class="breadcrumbs">
+						<ul>
+							<li><a href="/">Inicio</a></li>
+							<li><a href="/categories">Categorias</a></li>
+						<li>{{category.name}}</li>
+						</ul>
+					</div>
+				<h1>{{category.name}}</h1>
+				</div>
+			</div>
+			<img src="../img/bg_cat_shoes.jpg" class="img-fluid" alt="">
+		</div>
+		<!-- /top_banner -->
+			<div id="stick_here"></div>		
+			<div class="toolbox elemento_stick">
+				<div class="container">
+				<ul class="clearfix">
+					<li>
+						<div class="sort_select">
+							<select name="sort" id="sort">
+                                    <option value="priceasc">Menor precio</option>
+                                    <option value="pricedesc">Mayor precio</option>
+                                    <option value="alphaasc">Alfabético A-Z</option>
+                                    <option value="alphadesc">Alfabético Z-A </option>
+							</select>
+						</div>
+					</li>
+					<script>
+						$("#sort").change(function(){
+							insertParam("sort", document.getElementById("sort").value)
+						});
+						function insertParam(key, value) {
+							key = encodeURIComponent(key);
+							value = encodeURIComponent(value);
+
+							// kvp looks like ['key1=value1', 'key2=value2', ...]
+							var kvp = document.location.search.substr(1).split('&');
+							let i=0;
+
+							for(; i<kvp.length; i++){
+								if (kvp[i].startsWith(key + '=')) {
+									let pair = kvp[i].split('=');
+									pair[1] = value;
+									kvp[i] = pair.join('=');
+									break;
+								}
+							}
+
+							if(i >= kvp.length){
+								kvp[kvp.length] = [key,value].join('=');
+							}
+
+							// can return this or...
+							let params = kvp.join('&');
+
+							// reload page with new params
+							document.location.search = params;
+						}
+					</script>
+				</ul>
+				</div>
+			</div>
+			<!-- /toolbox -->
+			
+			<div class="container margin_30">
+				
+			<div class="row">
+				
+				<aside class="col-lg-3" id="sidebar_fixed">
+					
+				    <div class="filter_col">
+				        <div class="inner_bt"><a href="#" class="open_filters"><i class="ti-close"></i></a></div>
+				        <div class="filter_type version_2">
+				            <h4><a href="#filter_1" data-toggle="collapse" class="opened">Categorias</a></h4>
+				            <div class="collapse show" id="filter_1">
+				                <ul>
+									@each(cate in categories)
+				                    <li>
+				                        <label class="container_check">{{cate}}
+				                            <input type="radio" name="category" value="{{cate}}">
+				                            <span class="checkmark"></span>
+				                        </label>
+									</li>
+									@endeach
+				                    
+				                </ul>
+				            </div>
+				            <!-- /filter_type -->
+				        </div>
+				        <!-- /filter_type -->
+				        
+				        <!-- /filter_type -->
+				        
+				        <!-- /filter_type -->
+				        <div class="filter_type version_2">
+				            <h4><a href="#filter_4" data-toggle="collapse" class="closed">Precio</a></h4>
+				            <div class="collapse" id="filter_4">
+				                <ul>
+									<li style="display:none">
+				                        <label class="container_check">$0 — $10.000
+				                            <input type="radio" name="prices" selected value="0">
+				                            <span class="checkmark"></span>
+				                        </label>
+				                    </li>
+				                    <li>
+				                        <label class="container_check">$0 — $10.000
+				                            <input type="radio" name="prices" value="1">
+				                            <span class="checkmark"></span>
+				                        </label>
+				                    </li>
+				                    <li>
+				                        <label class="container_check">$10.000 — $30.000
+				                            <input type="radio" name="prices" value="2">
+				                            <span class="checkmark"></span>
+				                        </label>
+				                    </li>
+				                    <li>
+				                        <label class="container_check">$30.000 — $50.000
+				                            <input type="radio" name="prices" value="3">
+				                            <span class="checkmark"></span>
+				                        </label>
+				                    </li>
+				                    <li>
+				                        <label class="container_check">$50.000 — Más
+				                            <input type="radio" name="prices" value="4">
+				                            <span class="checkmark"></span>
+				                        </label>
+				                    </li>
+				                </ul>
+				            </div>
+				        </div>
+				        <!-- /filter_type -->
+				        <div class="buttons">
+				            <input type="submit" class="btn_1" value="Filtrar"> <a href="#0" class="btn_1 gray">Borrar Filtros</a>
+				        </div>
+					</div>
+				
+				</aside>
+				
+				<!-- /col -->
+				<div class="col-lg-9">
+					<div class="row small-gutters">
+						
+						
+					</div>
+<style>
+	
+.cont{
+}
+
+.container2{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-start;
+}
+
+.single-item{
+  
+}
+.pagination{
+
+	display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-start;
+  
+  padding:20px;
+  
+  &,
+  *{
+    user-select: none;
+  }
+  
+  a{
+    display:inline-block;
+    padding:0 10px;
+    cursor:pointer;
+    &.disabled{
+      opacity:.3;
+      pointer-events: none;
+    cursor:not-allowed;
+    }
+    &.current{
+      background:#f3f3f3;
+    }
+  }
+}
+</style>
+					<div class="cont">
+						<div class="container2">
+							@each(product in products)
+							<div class="col-6 col-md-4">
+								<div class="single-item">
+								<div class="grid_item">
+									<figure>
+										<a href="/product_detail/{{product.id}}">
+											<img class="img-fluid lazy" style="" src="{{product.image}}" onError="this.onerror=null;this.src='{{ assetsUrl('placeholder.png') }}';" data-src="{{product.image}}" alt="">
+										</a>
+									</figure>
+									<a href="product-detail-1.html">
+										<h3>{{product.name}}</h3>
+									</a>
+									<div class="price_box">
+										<span class="new_price">{{product.price}}</span>
+									</div>
+									<ul>
+										<li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Agregar al carrito"><i class="ti-shopping-cart"></i><span>Agregar al carrito</span></a></li>
+									</ul>
+								</div>
+								<!-- /grid_item -->
+							</div>
+						</div>
+							@endeach
+						  
+						</div>
+					  </div>
+<script>
+	(function($) {
+	var pagify = {
+		items: {},
+		container: null,
+		totalPages: 1,
+		perPage: 3,
+		currentPage: 0,
+		createNavigation: function() {
+			this.totalPages = Math.ceil(this.items.length / this.perPage);
+
+			$('.pagination', this.container.parent()).remove();
+			var pagination = $('<div class="pagination"></div>').append('<a class="nav prev disabled" data-next="false"><</a>');
+
+			for (var i = 0; i < this.totalPages; i++) {
+				var pageElClass = "page";
+				if (!i)
+					pageElClass = "page current";
+				var pageEl = '<a class="' + pageElClass + '" data-page="' + (
+				i + 1) + '">' + (
+				i + 1) + "</a>";
+				pagination.append(pageEl);
+			}
+			pagination.append('<a class="nav next" data-next="true">></a>');
+
+			this.container.after(pagination);
+
+			var that = this;
+			$("body").off("click", ".nav");
+			this.navigator = $("body").on("click", ".nav", function() {
+				var el = $(this);
+				that.navigate(el.data("next"));
+			});
+
+			$("body").off("click", ".page");
+			this.pageNavigator = $("body").on("click", ".page", function() {
+				var el = $(this);
+				that.goToPage(el.data("page"));
+			});
+		},
+		navigate: function(next) {
+			// default perPage to 5
+			if (isNaN(next) || next === undefined) {
+				next = true;
+			}
+			$(".pagination .nav").removeClass("disabled");
+			if (next) {
+				this.currentPage++;
+				if (this.currentPage > (this.totalPages - 1))
+					this.currentPage = (this.totalPages - 1);
+				if (this.currentPage == (this.totalPages - 1))
+					$(".pagination .nav.next").addClass("disabled");
+				}
+			else {
+				this.currentPage--;
+				if (this.currentPage < 0)
+					this.currentPage = 0;
+				if (this.currentPage == 0)
+					$(".pagination .nav.prev").addClass("disabled");
+				}
+
+			this.showItems();
+		},
+		updateNavigation: function() {
+
+			var pages = $(".pagination .page");
+			pages.removeClass("current");
+			$('.pagination .page[data-page="' + (
+			this.currentPage + 1) + '"]').addClass("current");
+		},
+		goToPage: function(page) {
+
+			this.currentPage = page - 1;
+
+			$(".pagination .nav").removeClass("disabled");
+			if (this.currentPage == (this.totalPages - 1))
+				$(".pagination .nav.next").addClass("disabled");
+
+			if (this.currentPage == 0)
+				$(".pagination .nav.prev").addClass("disabled");
+			this.showItems();
+		},
+		showItems: function() {
+			this.items.hide();
+			var base = this.perPage * this.currentPage;
+			this.items.slice(base, base + this.perPage).show();
+
+			this.updateNavigation();
+		},
+		init: function(container, items, perPage) {
+			this.container = container;
+			this.currentPage = 0;
+			this.totalPages = 1;
+			this.perPage = perPage;
+			this.items = items;
+			this.createNavigation();
+			this.showItems();
+		}
+	};
+
+	// stuff it all into a jQuery method!
+	$.fn.pagify = function(perPage, itemSelector) {
+		var el = $(this);
+		var items = $(itemSelector, el);
+
+		// default perPage to 5
+		if (isNaN(perPage) || perPage === undefined) {
+			perPage = 3;
+		}
+
+		// don't fire if fewer items than perPage
+		if (items.length <= perPage) {
+			return true;
+		}
+
+		pagify.init(el, items, perPage);
+	};
+})(jQuery);
+
+$(".container2").pagify(12, ".single-item");
+
+</script>
+					<!-- /row -->
+					<div class="pagination__wrapper">
+						<!--<ul class="pagination">
+							<li><a href="#0" class="prev" title="previous page">&#10094;</a></li>
+							<li>
+								<a href="#0" class="active">1</a>
+							</li>
+							<li>
+								<a href="#0">2</a>
+							</li>
+							<li>
+								<a href="#0">3</a>
+							</li>
+							<li>
+								<a href="#0">4</a>
+							</li>
+							<li><a href="#0" class="next" title="next page">&#10095;</a></li>
+						</ul>-->
+					</div>
+				</div>
+				<!-- /col -->
+			</div>
+			<!-- /row -->			
+				
+		</div>
+		<!-- /container -->
+	</main>
+	<!-- /main -->
+</form>
+@endsection
