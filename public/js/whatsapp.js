@@ -5,7 +5,7 @@ function initWhatsappChat() {
     if (mobileDetect) {
         $('#float-cta .whatsapp-msg-container').css('display','none');
         $('#float-cta > a').on('click', function(){
-            window.location = 'https://api.whatsapp.com/send?phone=+57 3108878419';
+            window.location = 'https://api.whatsapp.com/send?phone=+573108878419';
         });
     } else {
         $('#float-cta > a').click(function(){
@@ -17,7 +17,7 @@ function initWhatsappChat() {
             event.stopPropagation();
         });
         $('.btn-whatsapp-send').click(function() {
-            var baseUrl = 'https://web.whatsapp.com/send?phone=+57 3108878419text=';
+            var baseUrl = 'https://web.whatsapp.com/send?phone=+573108878419text=';
             var textEncode = encodeURIComponent($('#float-cta .whatsapp-msg-body textarea').val());
             window.open(baseUrl + textEncode, '_blank');
         });

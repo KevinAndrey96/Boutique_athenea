@@ -1,5 +1,5 @@
 @layout('layouts.principal')
-@section('main')
+@section('main') 
 <script>
 async function getClient()
 {
@@ -27,6 +27,26 @@ async function getClient()
 	})
 	.then(function () {
 		// always executed
+	});
+}
+function formatCurrency(amount)
+{
+		return "$" + amount.toFixed(0).replace(/\d(?=(\d{3})+\.)/g, "$&.");
+}
+async function validateCoupon()
+{
+	await axios.get('/validateCoupon', {
+    params: {
+      code: document.getElementById("COUPON").value
+    }
+	})
+	.then(function (response) {
+		document.getElementById("txtCoupon").innerHTML = document.getElementById("txtTotal2").innerHTML * (response.data.discount)/100
+		document.getElementById("txtTotal").innerHTML = formatCurrency(document.getElementById("txtTotal2").innerHTML-document.getElementById("txtCoupon").innerHTML)
+		document.getElementById("txtCoupon").innerHTML = formatCurrency(document.getElementById("txtTotal2").innerHTML * (response.data.discount)/100);		
+	})
+	.catch(function (error) {
+		window.alert("Cupón invalido")
 	});
 }
 </script>
@@ -356,16 +376,32 @@ async function getClient()
 						<ul>
 							<li class="clearfix"><em><strong>Subtotal</strong></em>  <span>{{prettyprices.subtotal}}</span></li>
 							<li class="clearfix"><em><strong>Envío</strong></em> <span>{{prettyprices.shipping}}</span></li>
-							
+							<li class="clearfix"><em><strong>Descuento</strong></em>  <span><p id="txtCoupon">$ 0</p> </span></li>
 						</ul>
-						<div class="total clearfix">TOTAL <span>{{prettyprices.total}}</span></div>
+						<div class="total clearfix">TOTAL <span><p id="txtTotal">{{prettyprices.total}}</p></span></div>
+						<div class="total clearfix" style="display:none">TOTAL <span><p id="txtTotal2">{{prices.total}}</p></span></div>
 						<div class="form-group">
 								<label class="container_check">Acepto los terminos y condiciones
 								  <input type="checkbox" required>
 								  <span class="checkmark"></span>
 								</label>
 							</div>
-						
+						<label for="">Tipo de pago</label>
+						<select name="payment_type" id="" class="form-control">
+							<option value="gateway">Pasarela de pago</option>
+							<option value="cash_on_delivery">Pago Contraentrega</option>
+						</select>
+						<hr>
+						<div class="row">
+							
+							<div class="col-md-6">
+								<input type="text" class="form-control" id="COUPON" name="COUPON" placeholder="Cupón de descuento">
+							</div>
+							<div class="col-md-6">
+								<button type="button" onclick="validateCoupon()" class="btn_1 full-width" value="Validar Cupón">Validar Cupón</button>
+							</div>
+						</div>
+						<br>
 						<input type="submit" class="btn_1 full-width" value="Confirmar y pagar">
 					</div>
 					<!-- /box_general -->

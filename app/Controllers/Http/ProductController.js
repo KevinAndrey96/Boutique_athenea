@@ -4,13 +4,14 @@ const Client = use('App/Models/Client')
 const Category = use('App/Models/Category')
 const Order = use('App/Models/Order')
 const OrderProduct = use('App/Models/OrderProduct')
+const Coupon = use('App/Models/Coupon')
 
 class ProductController {
     async index({ params, view }) {
         const product = await Product.find(params.id);
         product.price=this.formatCurrency("es-CO", "COP", 0, product.price);
         const relateds= await Product.query().where("category","=",product.category).where("id","!=",product.id).fetch()
-        const categories=await Category.all()
+        const categories = await Category.all()
         console.log(product)
         return view.render("product_detail", {product, relateds: relateds.toJSON(), categories: categories.toJSON()});
       }
@@ -22,54 +23,18 @@ class ProductController {
         }).format(number);
         return formatted;
       }
-      async bycat({request, response,params, view})
-      {
-        //console.log(request.params.id)
-        const category = await Category.find(params.id)
-        const categories = await Category.all()
-        const products = await Product.query().where("father","=",category.name).fetch()
-        
-        var products2 = []
-
-        var categories2 = await Product.query().pluck('father').groupBy('father')
-        for(const product of products.toJSON())
-        {
-            product.price=this.formatCurrency("es-CO", "COP", 0, product.price);
-            products2.push(product)
-            
-        }
-        console.log(categories.toJSON());
-        console.log(categories2)
-        return view.render('products_list', { products: products2, category: category, categories: categories2 })
-      }
-
-      async bycatmenu({request, response,params, view})
-      {
-        //console.log(request.params.name.replace(/%20/g, ' '))
-        const products = await Product.query().where("category","LIKE",request.params.name.replace(/%20/g, ' ')).fetch()
-        var products2=[]
-        for(const product of products.toJSON())
-        {
-            product.price=this.formatCurrency("es-CO", "COP", 0, product.price);
-            products2.push(product)
-        }
-        const category = await Category.query().where("name", "LIKE", request.params.name.replace(/%20/g, ' ')).first();
-        //const category = await Category.find(params.id)
-        console.log(category)
-        const categories = await Category.all()
-        
-        var categories2 = await Product.query().pluck('father').groupBy('father')
-        return view.render('products_list', { products: products2, category: category, categories: categories2 })
-      }
-
+  
       async search({request, response,params, view})
       {
-        var products=[]
-        var products2=[]
-        var category=[]
+        var products = []
+        var products2 = []
+        var category = []
       
         var sortparam="asc"
         var sortname="name"
+
+        var products = await Product.all()
+        products = products.toJSON()
         
         if(request.get().sort)
         {
@@ -95,70 +60,57 @@ class ProductController {
               sortname="name"
               break;
           }
-          products= await Product.query().orderBy(sortname,sortparam).fetch()
+          products = await Product.query().orderBy(sortname,sortparam).fetch()
         }
-
+        if(request.get().father)//Por categoria padre
+        {
+          products = await Product.query().where("father","LIKE","%"+request.get().father+"%").orderBy(sortname,sortparam).fetch()
+          category.name="Busqueda"
+        }
+        
         if(request.get().name)//Busqueda por nombre
         {
-          products= await Product.query().where("name","LIKE","%"+request.get().name+"%").orderBy(sortname,sortparam).fetch()
+          
+          products = await Product.query().where("name","LIKE","%"+request.get().name+"%").orderBy(sortname,sortparam).fetch()
           category.name="Busqueda"
           
-        }else//Busqueda por categoria y precio
+        }
+        if(request.get().category)//Filtro por categoría
         {
-          (request.get().prices === undefined) ? request.get().prices = 0 : request.get().prices = request.get().prices;
-          if(request.get().prices && request.get().category)
-          {
-            switch (parseInt(request.get().prices)) {
-              case 1:
-                products=await Product.query().where('category', request.get().category).whereBetween('price',[0,10000]).orderBy(sortname, sortparam).fetch()
-                break;
-              case 2:
-                products=await Product.query().where('category', request.get().category).whereBetween('price',[10000,30000]).orderBy(sortname, sortparam).fetch()
-                break;
-              case 3:
-                products=await Product.query().where('category', request.get().category).whereBetween('price',[30000,50000]).orderBy(sortname, sortparam).fetch()
-                break;
-              case 4:
-                products=await Product.query().where('category', request.get().category).whereBetween('price',">",50000).orderBy(sortname, sortparam).fetch()
-                break;
-              default:
-                products=await Product.query().where('category', request.get().category).orderBy(sortname, sortparam).fetch()
-                break;
-            }
-          }else
-          {
-            if(request.get().prices)
-            {
-              switch (parseInt(request.get().prices)) {
-                case 1:
-                  products=await Product.query().whereBetween('price',[0,10000]).orderBy(sortname, sortparam).fetch()
-                  break;
-                case 2:
-                  products=await Product.query().whereBetween('price',[10000,30000]).orderBy(sortname, sortparam).fetch()
-                  break;
-                case 3:
-                  products=await Product.query().whereBetween('price',[30000,50000]).orderBy(sortname, sortparam).fetch()
-                  break;
-                case 4:
-                  products=await Product.query().whereBetween('price',">",50000).orderBy(sortname, sortparam).fetch()
-                  break;
-                default:
-                  products=Product.all().fetch()
-                  break;
-              }
-            }
-            if(request.get().category)
-            {
-              products = await Product.query().where("category","like",request.get().category).fetch();
-            }
-          }
+          products = JSON.parse(JSON.stringify(products)).filter((item) => {
+            return item.category.toLowerCase() == request.get().category.toLowerCase();    
+          });          
+          category.name = request.get().category
+        }
+        
+        if(request.get().min)//Filtro menor precio
+        {
+          products = JSON.parse(JSON.stringify(products)).filter((item) => {
+            return item.price >= request.get().min;    
+          });
+        }
+        if(request.get().max)//Filtro mayor precio
+        {
+          products = JSON.parse(JSON.stringify(products)).filter((item) => {
+            return item.price <= request.get().max;
+          });
         }
         let father = "";
-        for(const product of products.toJSON())
+        try{
+          for(const product of products.toJSON())
+          {
+            father = product.father;
+            product.price=this.formatCurrency("es-CO", "COP", 0, product.price);
+            products2.push(product)
+          }
+        }catch(Exception)
         {
-          father = product.father;
-          product.price=this.formatCurrency("es-CO", "COP", 0, product.price);
-          products2.push(product)
+          for(const product of products)
+          {
+            father = product.father;
+            product.price=this.formatCurrency("es-CO", "COP", 0, product.price);
+            products2.push(product)
+          }
         }
 
 
@@ -190,30 +142,16 @@ class ProductController {
         product2.long_description=product.long_description
 
         const axios = use('axios');        
-        /*await axios.get(product.image)
-        .then( (response) => {
-            
-            product.image="https://boutiqueathenea.co/"+product.id+".png"
-            product2.image="https://boutiqueathenea.co/"+product.id+".png"
-        }).catch((error) =>{
-            
-            product.image="https://boutiqueathenea.co/placeholder.png"
-            product2.image="https://boutiqueathenea.co/placeholder.png"
-            
-          })
-          */
-          
-          
-          
         return product
       }
       
       async checkout({request, response, view})
       {
         var cart=request.input("CART")
+        var shipping = 1700
         const originalcart=cart
         cart=JSON.parse(cart)
-        var products=[]
+        var products =[]
         var total=0
         for(const cart2 of cart.cart)
         {
@@ -230,27 +168,21 @@ class ProductController {
         }
         var prettyprices={}
         prettyprices.subtotal=this.formatCurrency("es-CO", "COP", 0,total)
-        prettyprices.shipping=this.formatCurrency("es-CO", "COP", 0, 0)
-        prettyprices.total=this.formatCurrency("es-CO", "COP", 0,total+0)
+        prettyprices.shipping=this.formatCurrency("es-CO", "COP", 0, shipping)
+        prettyprices.total=this.formatCurrency("es-CO", "COP", 0,total+shipping)
 
         var prices={}
         prices.subtotal=prices.subtotal+total
-        prices.shipping= 0
-        prices.total=prices.subtotal+prices.shipping
+        prices.shipping= shipping
+        prices.total=total
         
         return view.render("checkout", {cart: products, prices: prices, prettyprices:prettyprices, originalcart: originalcart});
       }
       async pay({request, response, view})
       {
-        //registrar al cliente si no existe
-        //si existe actualizar sus datos
-        //registrar la orden en la bd
-
-        //Recibo datos de cliente y datos de la orden
         const email=request.input("EMAIL")
         
         try{
-          //Cliente existe y se actualizan sus valores
           var client=await Client.findBy("email",email)
           var client2 = await Client.find(client.id)
           client2.name=request.input("NAME")
@@ -262,7 +194,6 @@ class ProductController {
           console.log("Actualizando cliente")
         }catch(e)
         {
-          //Cliente no existe y pasa a ser creado
           var client = await new Client()
           client.name=request.input("NAME")
           client.email=email
@@ -276,10 +207,11 @@ class ProductController {
 
         var cart=request.input("CART")
         cart=JSON.parse(cart)
-        var products=[]
-        var total=0
+        var shipping = 1700
+        //var products =[]
+        //var total=0
 
-        const order= await new Order()
+        var order= await new Order()
         order.client_id=client.id
         order.status="pending"
         order.value=0
@@ -298,7 +230,33 @@ class ProductController {
           await orderProduct.save()
           console.log("Agregado producto a Orden")
         }
-        prods+=" Total: $"+order.value
+
+        prods+=" Total: $" + order.value + " + Envío: $"+shipping
+
+        if (request.input("COUPON")){
+          try{
+            
+          console.log("Cupón de descuento!")
+          var coupon = await Coupon.query().where("code", request.input("COUPON")).andWhere("status","=", "active").firstOrFail();
+          coupon.status = "used";
+          await coupon.save();
+
+          prods += " / Cupón de descuento aplicado: "+request.input("COUPON")+" - "+coupon.discount+"%";
+          
+          order.value = order.value-(order.value*coupon.discount/100)
+          await order.save();
+
+          prods += " / Total después de descuento: $"+order.value
+          }catch(Exception)
+          {
+
+          }
+        }
+        order.details = prods;
+
+        order.value += shipping
+
+        await order.save();
         
         console.log("Proceso completo")
 
@@ -312,36 +270,43 @@ class ProductController {
             console.log("Enviado Correo")
         })
 
-        const axios = require('axios');
-        var FormData = require('form-data');
+        if (request.input("payment_type") == "cash_on_delivery")
+        {
+          order.gateway = "Contraentrega";
+          await order.save()
+          return view.render('order_completed')
+        }else
+        {  
+          const axios = require('axios');
+          var FormData = require('form-data');
 
-        var bodyFormData = new FormData();
-        bodyFormData.append('userName', 'CLARITZA_MARIA-api');
-        bodyFormData.append('password', 'CLARITZA_MARIA');
-        bodyFormData.append('orderNumber', order.id);
-        bodyFormData.append('amount',  order.value+"00");
-        bodyFormData.append('returnUrl', "https://boutiqueathenea.co/pay");
-        bodyFormData.append('description', prods);
+          var bodyFormData = new FormData();
+          bodyFormData.append('userName', 'CLARITZA_MARIA-api');
+          bodyFormData.append('password', 'CLARITZA_MARIA');
+          bodyFormData.append('orderNumber', order.id);
+          bodyFormData.append('amount',  order.value+"00");
+          bodyFormData.append('returnUrl', "https://boutiqueathenea.co/pay");
+          bodyFormData.append('description', prods);
 
-        await axios({
-          method: 'post',
-          url: 'https://ecouat.credibanco.com/payment/rest/register.do',
-          data: bodyFormData,
-          headers: {
-            'content-type': `multipart/form-data; boundary=${bodyFormData._boundary}`,
-            }
-        })
-        .then(function (res) {
-          console.log("Pasarela");
-          order.gateway=res.data.orderId
-          order.save()
-          return response.redirect(res.data.formUrl)
-        })
-        .catch(function (error) {
-          console.log("Error"+error);
-          return response.redirect("https://boutiqueathenea.co")
-        });
-        //return view.render('order_completed')
+          await axios({
+            method: 'post',
+            url: 'https://ecouat.credibanco.com/payment/rest/register.do',
+            data: bodyFormData,
+            headers: {
+              'content-type': `multipart/form-data; boundary=${bodyFormData._boundary}`,
+              }
+          })
+          .then(function (res) {
+            console.log("Pasarela");
+            order.gateway=res.data.orderId
+            order.save()
+            return response.redirect(res.data.formUrl)
+          })
+          .catch(function (error) {
+            console.log("Error"+error);
+            return response.redirect("/")
+          });
+        }
       }
       async pay2({request, response, view})
       {

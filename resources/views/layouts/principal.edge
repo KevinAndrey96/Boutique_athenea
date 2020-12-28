@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Ansonika">
-    <title>Boutique Athenea | Inicio</title>
+    <title>Athenea | Inicio</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="{{assetsUrl('favicon.png')}}">
@@ -20,7 +20,9 @@
 	<!-- BASE CSS -->
 	{{ style('css/bootstrap.custom.min.css') }}
 
-    {{ style('css/style.css')}}
+	{{ style('css/style.css')}}
+	
+	
 
 	<!-- SPECIFIC CSS -->
 	{{ style('css/home_1.css') }}
@@ -28,20 +30,22 @@
     {{ style('css/product_page.css') }}
 	{{ style('css/cart.css') }}
 	{{ style('css/checkout.css') }}
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <!-- YOUR CUSTOM CSS -->
 	{{ style('css/custom.css')}}
 	<script
   src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
   integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
   crossorigin="anonymous"></script>
+  
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <div id="float-cta" >
     <span>Envianos un mensaje</span>
     <a href="javascript:void(0);">
-        <i class="fa fa-whatsapp" aria-hidden="true"></i>
-        <i class="fa fa-times" aria-hidden="true"></i>
+		<img class="img -responsive" width="50" src="https://logodownload.org/wp-content/uploads/2015/04/whatsapp-logo-1.png" alt="">
+        <!--<i class="fa fa-whatsapp" aria-hidden="true"></i>
+		<i class="fa fa-times" aria-hidden="true"></i>	-->
     </a>
     <div class="whatsapp-msg-container">
         <div class="whatsapp-msg-header">
@@ -101,7 +105,7 @@
 						<!-- Mobile menu button -->
 						<div class="main-menu">
 							<div id="header_menu">
-								<a href="index.html"><img src="{{ assetsUrl('img/logo.png') }}" alt="" width="100" height="35"></a>
+								<a href="/"><img src="{{ assetsUrl('img/logo.png') }}" alt="" width="100" height="35"></a>
 								<a href="#" class="open_close" id="close_in">	<i class="ti-close"></i></a>
 							</div>
 							<ul>
@@ -110,209 +114,244 @@
 									<div class="menu-wrapper">
 										<div class="row small-gutters">
 											<div class="col-lg-2">
-												<h3>Antialergicos y descongestionantes</h3>
+												<a href="/search?father=Antialergicos y descongestionantes"><h3>Antialergicos y descongestionantes</h3></a>
 												<ul>
-													<li><a href="/products_list_menu/TINTES PARA CABELLO">Antialergico respiratorio</a></li>
-													<li><a href="listing-grid-2-full.html">Descongestionantes respiratorio</a></li>
-													<li><a href="listing-grid-3.html">Descongestionante oftalmico</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Descongestionante otico</a></li>
+													<li><a href="/search?category=Dolor de Garganta">Dolor de Garganta</a></li>
+													<li><a href="/search?category=Antialergico respiratorio">Antialergico respiratorio</a></li>
+													<li><a href="/search?category=Descongestionantes respiratorio">Descongestionantes respiratorio</a></li>
+													<li><a href="/search?category=Descongestionante oftalmico">Descongestionante oftalmico</a></li>
+													<li><a href="/search?category=Descongestionante otico">Descongestionante otico</a></li>
 												</ul>
 											</div>
 												<div class="col-lg-2">
+												<a href="/search?father=Analgesicos antipiretico">
 												<h3>Analgesicos antipiretico</h3>
+												</a>
 												<ul>
-													<li><a href="#">Dolor de Garganta</a></li>
-													<li><a href="listing-grid-2-full.html">Cremas Antiinflamatorias</a></li>
-													<li><a href="listing-grid-3.html">Fiebre</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Dolor general</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Dolor fuerte</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Dolor abdominal y cólico</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Muscular y articular</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Niños</a></li>
+													<li><a href="/search?category=Dolor de Garganta">Dolor de Garganta</a></li>
+													<li><a href="/search?category=Cremas Antiinflamatorias">Cremas Antiinflamatorias</a></li>
+													<li><a href="/search?category=Fiebre">Fiebre</a></li>
+													<li><a href="/search?category=Dolor general">Dolor general</a></li>
+													<li><a href="/search?category=Dolor fuerte">Dolor fuerte</a></li>
+													<li><a href="/search?category=Dolor abdominal y cólico">Dolor abdominal y cólico</a></li>
+													<li><a href="/search?category=Muscular y articular">Muscular y articular</a></li>
+													<li><a href="/search?category=Niños">Niños</a></li>
 												</ul>
 											</div>
 											<div class="col-lg-2">
+											<a href="/search?father=Trastornos Digestivos  Estomago">
 												<h3>Trastornos Digestivos  Estomago</h3>
+											</a>
 												<ul>
-													<li><a href="#">Antiflatulentos</a></li>
-													<li><a href="listing-grid-2-full.html">Antiacidos y antiulcerosos</a></li>
-													<li><a href="listing-grid-3.html">Antiparasitarios</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Digestivos</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Antidiarréicos y sueros</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Laxantes y fibras</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Productos para el mareo</a></li>
+													<li><a href="/search?category=Antiflatulentos">Antiflatulentos</a></li>
+													<li><a href="/search?category=Antiacidos y antiulcerosos">Antiacidos y antiulcerosos</a></li>
+													<li><a href="/search?category=Antiparasitarios">Antiparasitarios</a></li>
+													<li><a href="/search?category=Digestivos">Digestivos</a></li>
+													<li><a href="/search?category=Antidiarréicos y sueros">Antidiarréicos y sueros</a></li>
+													<li><a href="/search?category=Laxantes y fibras">Laxantes y fibras</a></li>
+													<li><a href="/search?category=Productos para el mareo">Productos para el mareo</a></li>
 												</ul>
 											</div>
 											<div class="col-lg-2">
+											<a href="/search?father=Oftamológicos">
 												<h3>Oftamológicos</h3>
+											</a>
 												<ul>
-													<li><a href="#">Colirios</a></li>
-													<li><a href="listing-grid-2-full.html">Solución para lentes de contacto</a></li>
-													<li><a href="listing-grid-3.html">Gotas, lubricantes y lágrimas artificiales</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">parches oculares</a></li>
+													<li><a href="/search?category=Colirios">Colirios</a></li>
+													<li><a href="/search?category=Solución para lentes de contacto">Solución para lentes de contacto</a></li>
+													<li><a href="/search?category=Gotas, lubricantes y lágrimas artificiales">Gotas, lubricantes y lágrimas artificiales</a></li>
+													<li><a href="/search?category=parches oculares">parches oculares</a></li>
 
 												</ul>
 											</div>
 												<div class="col-lg-2">
+												<a href="/search?father=Tratamiento de la gripa y tos ">
 												<h3>Tratamiento de la gripa y tos </h3>
+												</a>
 												<ul>
-													<li><a href="#">Resfriado y gripa</a></li>
-													<li><a href="listing-grid-2-full.html">Tratamiento de la tos</a></li>
-													<li><a href="listing-grid-3.html">Descongestionante</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Antigripales adultos</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Antigripales niños</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Cuidado de la garganta</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Antitusivo</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Mucoliticos</a></li>
+													<li><a href="/search?category=Resfriado y gripa">Resfriado y gripa</a></li>
+													<li><a href="/search?category=Tratamiento de la tos">Tratamiento de la tos</a></li>
+													<li><a href="/search?category=Descongestionante">Descongestionante</a></li>
+													<li><a href="/search?category=Antigripales adultos">Antigripales adultos</a></li>
+													<li><a href="/search?category=Antigripales niños">Antigripales niños</a></li>
+													<li><a href="/search?category=Cuidado de la garganta">Cuidado de la garganta</a></li>
+													<li><a href="/search?category=Antitusivo">Antitusivo</a></li>
+													<li><a href="/search?category=Mucoliticos">Mucoliticos</a></li>
 
 												</ul>
 											</div>
 												<div class="col-lg-2">
+												<a href="/search?father=Droga blanca ">
 												<h3>Droga blanca </h3>
+												</a>
 												<ul>
-													<li><a href="#">Antiseptico</a></li>
-													<li><a href="listing-grid-2-full.html">Cuidado de herida y piel</a></li>
-													<li><a href="listing-grid-3.html">Estomago y uso magistral</a></li>
+													<li><a href="/search?category=Antiseptico">Antiseptico</a></li>
+													<li><a href="/search?category=Cuidado de herida y piel">Cuidado de herida y piel</a></li>
+													<li><a href="/search?category=Estomago y uso magistral">Estomago y uso magistral</a></li>
 												</ul>
 											</div>
 												<div class="col-lg-2">
+												<a href="/search?father=Vitaminas y productos naturales ">
 												<h3>Vitaminas y productos naturales </h3>
+												</a>
 												<ul>
-													<li><a href="#">Vitaminas</a></li>
-													<li><a href="listing-grid-2-full.html">Multivitamínicos</a></li>
-													<li><a href="listing-grid-3.html">Naturales</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Minerales</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">activador de apetito</a></li>
+													<li><a href="/search?category=Vitaminas">Vitaminas</a></li>
+													<li><a href="/search?category=Multivitamínicos">Multivitamínicos</a></li>
+													<li><a href="/search?category=Naturales">Naturales</a></li>
+													<li><a href="/search?category=Minerales">Minerales</a></li>
+													<li><a href="/search?category=activador de apetito">activador de apetito</a></li>
 
 
 												</ul>
 											</div>
 												<div class="col-lg-2">
+												<a href="/search?father=Dermatológicos ">
 												<h3>Dermatológicos </h3>
+												</a>
 												<ul>
-													<li><a href="#">Antifúngicos</a></li>
-													<li><a href="listing-grid-2-full.html">Antibióticos Tópicos</a></li>
-													<li><a href="listing-grid-3.html">Picaduras</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Antisépticos</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Callicidad y Antiarrugas</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Antiprurignoso</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Protectores dérmicos</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Tratamiento de cicatrices y heridas</a></li>
+													<li><a href="/search?category=Antifúngicos">Antifúngicos</a></li>
+													<li><a href="/search?category=Antibióticos Tópicos">Antibióticos Tópicos</a></li>
+													<li><a href="/search?category=Picaduras">Picaduras</a></li>
+													<li><a href="/search?category=Antisépticos">Antisépticos</a></li>
+													<li><a href="/search?category=Callicidad y Antiarrugas">Callicidad y Antiarrugas</a></li>
+													<li><a href="/search?category=Antiprurignoso">Antiprurignoso</a></li>
+													<li><a href="/search?category=Protectores dérmicos">Protectores dérmicos</a></li>
+													<li><a href="/search?category=Tratamiento de cicatrices y heridas">Tratamiento de cicatrices y heridas</a></li>
 
 
 												</ul>
 											</div>
 											<div class="col-lg-2">
+											<a href="/search?father=Dermatológicos ">
 												<h3>Dermatológicos </h3>
+											</a>
 												<ul>
-													<li><a href="listing-grid-4-sidebar-left.html">Tratamiento de psoriasis</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Queratolíticos</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Tratamiento de alopecia</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Cuidado corporal</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Cuidado Capilar</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Cuidado Facial</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Protección Solar</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">antivirales topicos</a></li>
+													<li><a href="/search?category=Tratamiento de psoriasis">Tratamiento de psoriasis</a></li>
+													<li><a href="/search?category=Queratolíticos">Queratolíticos</a></li>
+													<li><a href="/search?category=Tratamiento de alopecia">Tratamiento de alopecia</a></li>
+													<li><a href="/search?category=Cuidado corporal">Cuidado corporal</a></li>
+													<li><a href="/search?category=Cuidado Capilar">Cuidado Capilar</a></li>
+													<li><a href="/search?category=Cuidado Facial">Cuidado Facial</a></li>
+													<li><a href="/search?category=Protección Solar">Protección Solar</a></li>
+													<li><a href="/search?category=antivirales topicos">antivirales topicos</a></li>
 
 												</ul>
 											</div>
 												<div class="col-lg-2">
+												<a href="/search?father=cuidado heridas primeros auxilios ">
 												<h3>cuidado heridas primeros auxilios </h3>
+												</a>
 												<ul>
-													<li><a href="#">algodon</a></li>
-													<li><a href="listing-grid-2-full.html">apositos</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">botiquines</a></li>
-													<li><a href="listing-grid-3.html">cicatrizantes</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">esparadrapos</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">curas</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">gasas</a></li>
+													<li><a href="/search?category=algodon">algodon</a></li>
+													<li><a href="/search?category=apositos">apositos</a></li>
+													<li><a href="/search?category=botiquines">botiquines</a></li>
+													<li><a href="/search?category=cicatrizantes">cicatrizantes</a></li>
+													<li><a href="/search?category=esparadrapos">esparadrapos</a></li>
+													<li><a href="/search?category=curas">curas</a></li>
+													<li><a href="/search?category=gasas">gasas</a></li>
 
 												</ul>
 											</div>
 												<div class="col-lg-2">
+												<a href="/search?father=cuidado heridas primeros auxilios ">
 												<h3>cuidado heridas primeros auxilios </h3>
+												</a>
 												<ul>
-													<li><a href="#">gel antibacterial</a></li>
-													<li><a href="listing-grid-2-full.html">Antisépticos</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Compresas</a></li>
-													<li><a href="listing-grid-3.html">Vendas</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Jeringas, guantes y material hosp.</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Aparatos médicos y pastilleros</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">tapabocas </a></li>
+													<li><a href="/search?category=gel antibacterial">gel antibacterial</a></li>
+													<li><a href="/search?category=Antisépticos">Antisépticos</a></li>
+													<li><a href="/search?category=Compresas">Compresas</a></li>
+													<li><a href="/search?category=Vendas">Vendas</a></li>
+													<li><a href="/search?category=Jeringas, guantes y material hosp">Jeringas, guantes y material hosp.</a></li>
+													<li><a href="/search?category=Aparatos médicos y pastilleros">Aparatos médicos y pastilleros</a></li>
+													<li><a href="/search?category=tapabocas ">tapabocas </a></li>
 
 												</ul>
 											</div>
 
 											<div class="col-lg-2">
+											<a href="/search?father=Bucal">
 												<h3>Bucal</h3>
+											</a>
 												<ul>
-													<li><a href="#">Aftas</a></li>
-													<li><a href="listing-grid-2-full.html">Antisépticos Bucales</a></li>
+													<li><a href="/search?category=Aftas">Aftas</a></li>
+													<li><a href="/search?category=Antisépticos Bucales">Antisépticos Bucales</a></li>
 
 												</ul>
 											</div>
 
 												<div class="col-lg-2">
+												<a href="/search?father=Nutricion y vida saludable ">
 												<h3>Nutricion y vida saludable </h3>
+												</a>
 												<ul>
-													<li><a href="#">Complementos para adultos</a></li>
-													<li><a href="listing-grid-2-full.html">Complementos para niños</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Alimentos saludables</a></li>
+													<li><a href="/search?category=Complementos para adultos">Complementos para adultos</a></li>
+													<li><a href="/search?category=Complementos para niños">Complementos para niños</a></li>
+													<li><a href="/search?category=Alimentos saludables">Alimentos saludables</a></li>
 
 												</ul>
 											</div>
 											<div class="col-lg-2">
+											<a href="/search?father=Vendas y productos ortopedicos ">
 												<h3>Vendas y productos ortopedicos </h3>
+											</a>
 												<ul>
-													<li><a href="#">Calcetines y medias terapeúticas</a></li>
-													<li><a href="listing-grid-2-full.html">Equipos médicos</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Productos para rehabilitación</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Inhalocamaras y dispositivos</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">vendas de yeso</a></li>
+													<li><a href="/search?category=Calcetines y medias terapeúticas">Calcetines y medias terapeúticas</a></li>
+													<li><a href="/search?category=Equipos médicos">Equipos médicos</a></li>
+													<li><a href="/search?category=Productos para rehabilitación">Productos para rehabilitación</a></li>
+													<li><a href="/search?category=Inhalocamaras y dispositivos">Inhalocamaras y dispositivos</a></li>
+													<li><a href="/search?category=vendas de yeso">vendas de yeso</a></li>
 
 
 												</ul>
 											</div>
 												<div class="col-lg-2">
+												<a href="/search?father=Cuidado de los pies y antimicóticos ">
 												<h3>Cuidado de los pies y antimicóticos </h3>
+												</a>
 												<ul>
-													<li><a href="#">Talcos y desodorantes de pie</a></li>
-													<li><a href="listing-grid-2-full.html">Plantillas</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Apósitos y tratamiento de callos</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Accesorios para pies</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Antimicotico topico</a></li>
+													<li><a href="/search?category=Talcos y desodorantes de pie">Talcos y desodorantes de pie</a></li>
+													<li><a href="/search?category=Plantillas">Plantillas</a></li>
+													<li><a href="/search?category=Apósitos y tratamiento de callos">Apósitos y tratamiento de callos</a></li>
+													<li><a href="/search?category=Accesorios para pies">Accesorios para pies</a></li>
+													<li><a href="/search?category=Antimicotico topico">Antimicotico topico</a></li>
 
 
 												</ul>
 											</div>
 
 												<div class="col-lg-2">
+												<a href="/search?father=Ginecológicos ">
 												<h3>Ginecológicos </h3>
+												</a>
 												<ul>
-													<li><a href="#">Higiene Íntima</a></li>
-													<li><a href="listing-grid-2-full.html">Antisépticos ginecológicos</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Anticonceptivos</a></li>
+													<li><a href="/search?category=Higiene Íntima">Higiene Íntima</a></li>
+													<li><a href="/search?category=Antisépticos ginecológicos">Antisépticos ginecológicos</a></li>
+													<li><a href="/search?category=Anticonceptivos">Anticonceptivos</a></li>
 												</ul>
 											</div>
 
 												<div class="col-lg-2">
+												<a href="/search?father=Sistemáticos ">
 												<h3>Sistemáticos </h3>
+												</a>
 												<ul>
-													<li><a href="#">Insomnio</a></li>
-													<li><a href="listing-grid-2-full.html">Mareo Cinético</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Antidepresivos</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">ansioliticos</a></li>
+													<li><a href="/search?category=Insomnio">Insomnio</a></li>
+													<li><a href="/search?category=Mareo Cinético">Mareo Cinético</a></li>
+													<li><a href="/search?category=Antidepresivos">Antidepresivos</a></li>
+													<li><a href="/search?category=ansioliticos">ansioliticos</a></li>
 
 												</ul>
 											</div>
 
 											<div class="col-lg-2">
+											<a href="/search?father=Incontinencia ">
 												<h3>Incontinencia </h3>
+											</a>
 												<ul>
-													<li><a href="#">incontinencia del hombre</a></li>
-													<li><a href="listing-grid-2-full.html">incontinencia de la mujer</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">protectores topicos</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">cubiertas-desechables</a></li>
+													<li><a href="/search?category=incontinencia del hombre">incontinencia del hombre</a></li>
+													<li><a href="/search?category=incontinencia de la mujer">incontinencia de la mujer</a></li>
+													<li><a href="/search?category=protectores topicos">protectores topicos</a></li>
+													<li><a href="/search?category=cubiertas-desechables">cubiertas-desechables</a></li>
 
 												</ul>
 											</div>
@@ -327,90 +366,102 @@
 									<div class="menu-wrapper">
 										<div class="row small-gutters">
 											<div class="col-lg-2">
+											<a href="/search?father=aseo personal">
 												<h3>aseo personal</h3>
+											</a>
 												<ul>
-													<li><a href="#">Desodorantes</a></li>
-													<li><a href="listing-grid-2-full.html">jabones-geles</a></li>
-													<li><a href="listing-grid-3.html">papel-higienico</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">repelentes</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">toallitas-pañitos</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Pañuelos faciales</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Jabones y gel antibacterial</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Afeitada y depilación</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Cuidado para pies</a></li>
+													<li><a href="/search?category=Desodorantes">Desodorantes</a></li>
+													<li><a href="/search?category=jabones-geles">jabones-geles</a></li>
+													<li><a href="/search?category=papel-higienico">papel-higienico</a></li>
+													<li><a href="/search?category=repelentes">repelentes</a></li>
+													<li><a href="/search?category=toallitas-pañitos">toallitas-pañitos</a></li>
+													<li><a href="/search?category=Pañuelos faciales">Pañuelos faciales</a></li>
+													<li><a href="/search?category=Jabones y gel antibacterial">Jabones y gel antibacterial</a></li>
+													<li><a href="/search?category=Afeitada y depilación">Afeitada y depilación</a></li>
+													<li><a href="/search?category=Cuidado para pies">Cuidado para pies</a></li>
 												</ul>
 											</div>
 											<div class="col-lg-2">
+											<a href="/search?father=cuidado oral">
 												<h3>cuidado oral</h3>
+											</a>
 												<ul>
-													<li><a href="#">blanqueadores</a></li>
-													<li><a href="listing-grid-2-full.html">cuidado-bucal</a></li>
-													<li><a href="listing-grid-3.html">cuidado-protesis</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">enjuages-bucales</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">ortodoncia</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Cepillos dentales niños</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Cremas dentales niños</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Cepillos dentales adultos</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Cremas dentales adultos</a></li>
-														<li><a href="listing-grid-4-sidebar-left.html">Sedas dentales</a>
+													<li><a href="/search?category=blanqueadores">blanqueadores</a></li>
+													<li><a href="/search?category=cuidado-bucal">cuidado-bucal</a></li>
+													<li><a href="/search?category=cuidado-protesis">cuidado-protesis</a></li>
+													<li><a href="/search?category=enjuages-bucales">enjuages-bucales</a></li>
+													<li><a href="/search?category=ortodoncia">ortodoncia</a></li>
+													<li><a href="/search?category=Cepillos dentales niños">Cepillos dentales niños</a></li>
+													<li><a href="/search?category=Cremas dentales niños">Cremas dentales niños</a></li>
+													<li><a href="/search?category=Cepillos dentales adultos">Cepillos dentales adultos</a></li>
+													<li><a href="/search?category=Cremas dentales adultos">Cremas dentales adultos</a></li>
+														<li><a href="/search?category=														<li><a href=".html">Sedas dentales</a>l">Sedas dentales</a>
 													</li>
 												</ul>
 											</div>
 											<div class="col-lg-2">
+											<a href="/search?father=proteccion femenina">
 												<h3>proteccion femenina</h3>
+											</a>
 												<ul>
-													<li><a href="#">jabones intimos</a></li>
-													<li><a href="listing-grid-2-full.html">pañitos intimos</a></li>
-													<li><a href="listing-grid-3.html">depilacion</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">protectores diarios</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">tampones</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">geles intimos</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">copas menstruales</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">toallas higienicas</a></li>
+													<li><a href="/search?category=jabones intimos">jabones intimos</a></li>
+													<li><a href="/search?category=pañitos intimos">pañitos intimos</a></li>
+													<li><a href="/search?category=depilacion">depilacion</a></li>
+													<li><a href="/search?category=protectores diarios">protectores diarios</a></li>
+													<li><a href="/search?category=tampones">tampones</a></li>
+													<li><a href="/search?category=geles intimos">geles intimos</a></li>
+													<li><a href="/search?category=copas menstruales">copas menstruales</a></li>
+													<li><a href="/search?category=toallas higienicas">toallas higienicas</a></li>
 
 												</ul>
 											</div>
 												<div class="col-lg-2">
+												<a href="/search?father=cuidado cabello ">
 												<h3>cuidado cabello </h3>
+												</a>
 												<ul>
-													<li><a href="#">acondicionadores</a></li>
-													<li><a href="listing-grid-2-full.html">shampoo</a></li>
-													<li><a href="listing-grid-3.html">tratamientos-capilares</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Cremas, geles y fijadores</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Ampollas</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Tintes para cabello</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Lociones y siliconas</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Lacas</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Accesorios cabello</a></li>
+													<li><a href="/search?category=acondicionadores">acondicionadores</a></li>
+													<li><a href="/search?category=shampoo">shampoo</a></li>
+													<li><a href="/search?category=tratamientos-capilares">tratamientos-capilares</a></li>
+													<li><a href="/search?category=Cremas, geles y fijadores">Cremas, geles y fijadores</a></li>
+													<li><a href="/search?category=Ampollas">Ampollas</a></li>
+													<li><a href="/search?category=Tintes para cabello">Tintes para cabello</a></li>
+													<li><a href="/search?category=Lociones y siliconas">Lociones y siliconas</a></li>
+													<li><a href="/search?category=Lacas">Lacas</a></li>
+													<li><a href="/search?category=Accesorios cabello">Accesorios cabello</a></li>
 
 
 												</ul>
 											</div>
 												<div class="col-lg-2">
+												<a href="/search?father=Cuidado de la Piel ">
 												<h3>Cuidado de la Piel </h3>
+												</a>
 												<ul>
-													<li><a href="#">Aceites</a></li>
-													<li><a href="listing-grid-2-full.html">Especializado</a></li>
-													<li><a href="listing-grid-3.html">Cuidado facial</a></li>
-													<li><a href="listing-grid-3.html">Adelgazantes</a></li>
-													<li><a href="listing-grid-3.html">Cuidado corporal</a></li>
-													<li><a href="listing-grid-3.html">cuidado labios</a></li>
-													<li><a href="listing-grid-3.html">Repelentes e insecticidas</a></li>
-													<li><a href="listing-grid-3.html">proteccion solar</a></li>
-													<li><a href="listing-grid-3.html">manicura pedicura</a></li>
+													<li><a href="/search?category=Aceites">Aceites</a></li>
+													<li><a href="/search?category=Especializado">Especializado</a></li>
+													<li><a href="/search?category=Cuidado facial">Cuidado facial</a></li>
+													<li><a href="/search?category=Adelgazantes">Adelgazantes</a></li>
+													<li><a href="/search?category=Cuidado corporal">Cuidado corporal</a></li>
+													<li><a href="/search?category=cuidado labios">cuidado labios</a></li>
+													<li><a href="/search?category=Repelentes e insecticidas">Repelentes e insecticidas</a></li>
+													<li><a href="/search?category=proteccion solar">proteccion solar</a></li>
+													<li><a href="/search?category=manicura pedicura">manicura pedicura</a></li>
 												</ul>
 											</div>
 												<div class="col-lg-2">
+												<a href="/search?father=Maquillaje">
 												<h3>Maquillaje</h3>
+												</a>
 												<ul>
-													<li><a href="#">Permanente</a></li>
-													<li><a href="listing-grid-2-full.html">Semipermanente</a></li>
-													<li><a href="listing-grid-3.html">Sin amoniaco</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Rostro</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Ojos</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Labios</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Uñas</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">accesorios-cosmetica</a></li>
+													<li><a href="/search?category=Permanente">Permanente</a></li>
+													<li><a href="/search?category=Semipermanente">Semipermanente</a></li>
+													<li><a href="/search?category=Sin amoniaco">Sin amoniaco</a></li>
+													<li><a href="/search?category=Rostro">Rostro</a></li>
+													<li><a href="/search?category=Ojos">Ojos</a></li>
+													<li><a href="/search?category=Labios">Labios</a></li>
+													<li><a href="/search?category=Uñas">Uñas</a></li>
+													<li><a href="/search?category=accesorios-cosmetica">accesorios-cosmetica</a></li>
 
 
 												</ul>
@@ -425,74 +476,86 @@
 									<div class="menu-wrapper">
 										<div class="row small-gutters">
 											<div class="col-lg-2">
+											<a href="/search?father=Cuidado de la mamá">
 												<h3>Cuidado de la mamá</h3>
+											</a>
 												<ul>
-													<li><a href="#">Antiestrías</a></li>
-													<li><a href="listing-grid-2-full.html">nutricion prenatal</a></li>
-													<li><a href="listing-grid-3.html">accesorio de lactancia</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">toallas de maternidad</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">protectores lacteos</a></li>
+													<li><a href="/search?category=Antiestrías">Antiestrías</a></li>
+													<li><a href="/search?category=nutricion prenatal">nutricion prenatal</a></li>
+													<li><a href="/search?category=accesorio de lactancia">accesorio de lactancia</a></li>
+													<li><a href="/search?category=toallas de maternidad">toallas de maternidad</a></li>
+													<li><a href="/search?category=protectores lacteos">protectores lacteos</a></li>
 
 												</ul>
 											</div>
 											<div class="col-lg-2">
+											<a href="/search?father=Accesorios bebé">
 												<h3>Accesorios bebé</h3>
+											</a>
 												<ul>
-													<li><a href="#">Mordederas</a></li>
-													<li><a href="listing-grid-2-full.html">Manicure-limpieza nasal y encias</a></li>
-													<li><a href="listing-grid-3.html">Termometros</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">chupos</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">biberones</a></li>
+													<li><a href="/search?category=Mordederas">Mordederas</a></li>
+													<li><a href="/search?category=Manicure-limpieza nasal y encias">Manicure-limpieza nasal y encias</a></li>
+													<li><a href="/search?category=Termometros">Termometros</a></li>
+													<li><a href="/search?category=chupos">chupos</a></li>
+													<li><a href="/search?category=biberones">biberones</a></li>
 
 												</ul>
 											</div>
 											<div class="col-lg-2">
+											<a href="/search?father=higiene del bebé">
 												<h3>higiene del bebé</h3>
+											</a>
 												<ul>
-													<li><a href="#">Champu baby</a></li>
-													<li><a href="listing-grid-2-full.html">Acondicionador baby</a></li>
-													<li><a href="listing-grid-3.html">Jabon barra baby</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Jabon liquido baby</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Copitos</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Cremas liquidas baby</a></li>
+													<li><a href="/search?category=Champu baby">Champu baby</a></li>
+													<li><a href="/search?category=Acondicionador baby">Acondicionador baby</a></li>
+													<li><a href="/search?category=Jabon barra baby">Jabon barra baby</a></li>
+													<li><a href="/search?category=Jabon liquido baby">Jabon liquido baby</a></li>
+													<li><a href="/search?category=Copitos">Copitos</a></li>
+													<li><a href="/search?category=Cremas liquidas baby">Cremas liquidas baby</a></li>
 
 
 												</ul>
 											</div>
 											<div class="col-lg-2">
+											<a href="/search?father=higiene del bebé">
 												<h3>higiene del bebé</h3>
+											</a>
 												<ul>
 
-													<li><a href="listing-grid-4-sidebar-left.html">Aceites baby</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Talco baby</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Colonias baby</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">pañales</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">protectores solares y repelentes</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">cremas antipañaliticas-dermoprotectoras</a></li>
+													<li><a href="/search?category=Aceites baby">Aceites baby</a></li>
+													<li><a href="/search?category=Talco baby">Talco baby</a></li>
+													<li><a href="/search?category=Colonias baby">Colonias baby</a></li>
+													<li><a href="/search?category=pañales">pañales</a></li>
+													<li><a href="/search?category=protectores solares y repelentes">protectores solares y repelentes</a></li>
+													<li><a href="/search?category=cremas antipañaliticas-dermoprotectoras">cremas antipañaliticas-dermoprotectoras</a></li>
 
 												</ul>
 											</div>
 												<div class="col-lg-2">
+												<a href="/search?father=Nutricion y Formulas infantiles ">
 												<h3>Nutricion y Formulas infantiles </h3>
+												</a>
 												<ul>
-													<li><a href="#">Inicio</a></li>
-													<li><a href="listing-grid-2-full.html">Continuacion</a></li>
-													<li><a href="listing-grid-3.html">Crecimiento</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Especializada</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">prematuros </a></li>
+													<li><a href="/search?category=Inicio">Inicio</a></li>
+													<li><a href="/search?category=Continuacion">Continuacion</a></li>
+													<li><a href="/search?category=Crecimiento">Crecimiento</a></li>
+													<li><a href="/search?category=Especializada">Especializada</a></li>
+													<li><a href="/search?category=prematuros ">prematuros </a></li>
 
 
 
 												</ul>
 											</div>
 												<div class="col-lg-2">
+												<a href="/search?father=Nutricion y Formulas infantiles ">
 												<h3>Nutricion y Formulas infantiles </h3>
+												</a>
 												<ul>
 
-													<li><a href="listing-grid-4-sidebar-left.html">Papillas</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Complementos <br>Alimenticios</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">cereales</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">compotas</a></li>
+													<li><a href="/search?category=Papillas">Papillas</a></li>
+													<li><a href="/search?category=Complementos <br>Alimenticios">Complementos <br>Alimenticios</a></li>
+													<li><a href="/search?category=cereales">cereales</a></li>
+													<li><a href="/search?category=compotas">compotas</a></li>
 
 
 												</ul>
@@ -507,35 +570,37 @@
 									<div class="menu-wrapper">
 										<div class="row small-gutters">
 											<div class="col-lg-2">
+											<a href="/search?father=Dermatológicos">
 												<h3>Dermatológicos</h3>
+											</a>
 												<ul>
-													<li><a href="#">Antifúngicos</a></li>
-													<li><a href="listing-grid-2-full.html">Antibióticos Tópicos</a></li>
-													<li><a href="listing-grid-3.html">Cicatrizantes</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Picaduras</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Antisépticos</a></li>
+													<li><a href="/search?category=Antifúngicos">Antifúngicos</a></li>
+													<li><a href="/search?category=Antibióticos Tópicos">Antibióticos Tópicos</a></li>
+													<li><a href="/search?category=Cicatrizantes">Cicatrizantes</a></li>
+													<li><a href="/search?category=Picaduras">Picaduras</a></li>
+													<li><a href="/search?category=Antisépticos">Antisépticos</a></li>
 
 												</ul>
 											</div>
 											<div class="col-lg-2">
 												<br>
 												<ul>
-													<li><a href="#">Callicidad y Antiarrugas</a></li>
-													<li><a href="listing-grid-2-full.html">Antiprurignoso</a></li>
-													<li><a href="listing-grid-3.html">Protectores dérmicos</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Tratamiento de cicatrices y heridas</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Tratamiento de psoriasis</a></li>
+													<li><a href="/search?category=Callicidad y Antiarrugas">Callicidad y Antiarrugas</a></li>
+													<li><a href="/search?category=Antiprurignoso">Antiprurignoso</a></li>
+													<li><a href="/search?category=Protectores dérmicos">Protectores dérmicos</a></li>
+													<li><a href="/search?category=Tratamiento de cicatrices y heridas">Tratamiento de cicatrices y heridas</a></li>
+													<li><a href="/search?category=Tratamiento de psoriasis">Tratamiento de psoriasis</a></li>
 
 												</ul>
 											</div>
 											<div class="col-lg-2">
 												<br>
 												<ul>
-													<li><a href="#">Queratolíticos</a></li>
-													<li><a href="listing-grid-2-full.html">Cuidado Capilar</a></li>
-													<li><a href="listing-grid-3.html">Dermolimpiadores</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Protección Solar</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Hidratantes Faciales</a></li>
+													<li><a href="/search?category=Queratolíticos">Queratolíticos</a></li>
+													<li><a href="/search?category=Cuidado Capilar">Cuidado Capilar</a></li>
+													<li><a href="/search?category=Dermolimpiadores">Dermolimpiadores</a></li>
+													<li><a href="/search?category=Protección Solar">Protección Solar</a></li>
+													<li><a href="/search?category=Hidratantes Faciales">Hidratantes Faciales</a></li>
 
 
 
@@ -544,10 +609,10 @@
 											<div class="col-lg-2">
 												<br>
 												<ul>
-												<li><a href="listing-grid-4-sidebar-left.html">Hidratantes Corporales</a></li>
-													<li><a href="listing-grid-2-full.html">Antiestrías</a></li>
-													<li><a href="listing-grid-3.html">Antiedad</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Cremas Corporales</a></li>
+												<li><a href="/search?category=Hidratantes Corporales">Hidratantes Corporales</a></li>
+													<li><a href="/search?category=Antiestrías">Antiestrías</a></li>
+													<li><a href="/search?category=Antiedad">Antiedad</a></li>
+													<li><a href="/search?category=Cremas Corporales">Cremas Corporales</a></li>
 												</ul>
 											</div>
 										</div>
@@ -558,12 +623,12 @@
 									<li class="submenu">
 									<a href="javascript:void(0);" class="show-submenu">Bienestar sexual</a>
 									<ul>
-										<li><a href="header-2.html">Anticonceptivos</a></li>
-										<li><a href="header-3.html">Disfuncion erectil</a></li>
-										<li><a href="header-4.html">Pruebas de embarazo</a></li>
-										<li><a href="header-5.html">Preservativos y lubricantes</a></li>
-										<li><a href="404.html">Cremas y ovulos</a></li>
-										<li><a href="sign-in-modal.html">accesorios </a></li>
+										<li><a href="/search?category=Anticonceptivos">Anticonceptivos</a></li>
+										<li><a href="/search?category=Disfuncion erectil">Disfuncion erectil</a></li>
+										<li><a href="/search?category=Pruebas de embarazo">Pruebas de embarazo</a></li>
+										<li><a href="/search?category=Preservativos y lubricantes">Preservativos y lubricantes</a></li>
+										<li><a href="/search?category=Cremas y ovulos">Cremas y ovulos</a></li>
+										<li><a href="/search?category=accesorios ">accesorios </a></li>
 
 									</ul>
 								</li>
@@ -646,9 +711,9 @@
           <div class="collapse dont-collapse-sm sigue" id="collapse_1">
 					<div class="follow_us">
             <ul>
-              <li><a href="#"><img src="{{ assetsUrl('img/facebook_icon.svg') }}" alt="" class="lazy"></a></li>
-              <li><a href="#"><img src="{{ assetsUrl('img/instagram_icon.svg') }}" alt="" class="lazy"></a></li>
-              <li><a href="#"><img src="{{ assetsUrl('img/youtube_icon.svg') }}" alt="" class="lazy"></a></li>
+              <li> <a href="#"><img src="{{ assetsUrl('img/facebook_icon.svg') }}" alt="" class="lazy"></a></li>
+              <li> <a href="#"><img src="{{ assetsUrl('img/instagram_icon.svg') }}" alt="" class="lazy"></a></li>
+              <li> <a href="#"><img src="{{ assetsUrl('img/youtube_icon.svg') }}" alt="" class="lazy"></a></li>
             </ul>
           </div>
         </div>

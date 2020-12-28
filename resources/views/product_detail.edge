@@ -7,7 +7,7 @@
 	            <div class="col-md-6">
 	                <div class="all">
 	                    <div class="slider">
-							<img src="{{product.image}}" width="500" class="img-responsive">	                        
+							<img src="{{product.image}}" width="100%" class="img-responsive">
 	                    </div>
 	                    
 	                </div>
@@ -206,7 +206,7 @@ console.log("Carrito: "+localStorage.getItem('Pcart'))
 							<h3>{{product.name}}</h3>
 						</a>
 						<div class="price_box">
-							<span class="new_price">$10.000</span>
+							<span class="new_price">${{product.price}}</span>
 						</div>
 						<ul>
 							<li><a href="#" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Agregar al carrito"><i class="ti-shopping-cart"></i><span>Agregar al carrito</span></a></li>

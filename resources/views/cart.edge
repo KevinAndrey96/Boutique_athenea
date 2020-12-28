@@ -48,7 +48,7 @@
 	async function Totals()
 	{
 		subtotal=0
-		domicilio=0
+		domicilio=1700
 		const objeto=JSON.parse(localStorage.getItem('Pcart'))
 		objeto.cart.forEach(async (x,i) =>
 			{
@@ -80,7 +80,7 @@
 			
 			console.log(JSON.stringify(objeto.cart))
 			var subtotal=0
-			var domicilio=0
+			var domicilio=1700
 			//for(var i=0; i<objeto.cart.length;i++)
 			objeto.cart.forEach(async (x,i) =>
 			{
@@ -146,7 +146,7 @@
 		<div class="page_header">
 			<div class="breadcrumbs">
 				<ul>
-					<li><a href="index.html">Inicio</a></li>
+					<li><a href="/">Inicio</a></li>
 					<li>carrito de compras</li>
 				</ul>
 			</div>
@@ -200,7 +200,7 @@
 					<span>Subtotal</span> <p id="subtotal">$0</p>
 				</li>
 				<li>
-					<span>Domicilio</span> <p id="domicilio">$0</p>
+					<span>Domicilio</span> <p id="domicilio">$1.700</p>
 				</li>
 				<li>
 					<span>Total</span> <p id="total">$0</p>
