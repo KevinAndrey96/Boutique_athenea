@@ -178,6 +178,7 @@ class ProductController {
         
         return view.render("checkout", {cart: products, prices: prices, prettyprices:prettyprices, originalcart: originalcart});
       }
+
       async pay({request, response, view})
       {
         const email=request.input("EMAIL")
@@ -261,7 +262,6 @@ class ProductController {
         console.log("Proceso completo")
 
         const Mail = use('Mail')
-        console.log(order.toJSON())
         await Mail.send('emails.order', {order: order.toJSON(), prods: prods}, (message) => {
           message
             .to(email)
@@ -269,7 +269,7 @@ class ProductController {
             .subject('Confirmación de pedido')
             console.log("Enviado Correo")
         })
-
+        console.log("Inicia proceso de pago")
         if (request.input("payment_type") == "cash_on_delivery")
         {
           order.gateway = "Contraentrega";
@@ -277,9 +277,43 @@ class ProductController {
           return view.render('order_completed')
         }else
         {  
-          const axios = require('axios');
-          var FormData = require('form-data');
+          //INICIO PAYU
+          var md5 = require('md5');
 
+          const api_key = "9z3z6tDaesSpFgQ6d3AvH1XGH7";
+          const merchant_id = "904382";
+          var reference_code = order.id;
+          var amount = order.value;
+          const currency = "COP"
+          var signature = md5(api_key+"~"+merchant_id+"~"+reference_code+"~"+amount+"~"+currency);
+
+          var payu = {
+            "url" : "https://checkout.payulatam.com/ppp-web-gateway-payu/",
+            "merchantId" : merchant_id,
+            "accountId" : "911077",
+            "description" : prods,
+            "referenceCode" : order.id,
+            "amount" : order.value,
+            "tax" : "0",
+            "taxReturnBase" : "0",
+            "currency" : "COP",
+            "signature" : signature,
+            "test" : "0",
+            "buyerEmail" : email,
+            "responseUrl" : "https://boutiqueathenea.co/pay",
+            "confirmationUrl" : "https://boutiqueathenea.co/pay",
+
+            "shippingAddress" : "calle 93 n 47 - 65",
+            "shippingCity" : "Bogota",
+            "shippingCountry" : "CO",
+          }
+
+          return view.render('order_completed_payu',{payu: payu})
+          //FIN PAYU
+          //INICIO CREDIBANCO
+          /*const axios = require('axios');
+          var FormData = require('form-data');
+          
           var bodyFormData = new FormData();
           bodyFormData.append('userName', 'CLARITZA_MARIA-api');
           bodyFormData.append('password', 'CLARITZA_MARIA');
@@ -305,7 +339,8 @@ class ProductController {
           .catch(function (error) {
             console.log("Error"+error);
             return response.redirect("/")
-          });
+          });*/
+          //FIN CREDIBANCO
         }
       }
       async pay2({request, response, view})
