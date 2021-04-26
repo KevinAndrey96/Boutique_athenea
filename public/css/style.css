@@ -2090,7 +2090,7 @@ a.btn_1:focus,
 }
 a.btn_1:hover,
 .btn_1:hover {
-  background-color: #069737;
+  background-color: #6a0e10;
   color: #111 !important;
 }
 a.btn_1.full-width,
@@ -2129,7 +2129,7 @@ a.btn_1.gray,
 }
 a.btn_1.gray:hover,
 .btn_1.gray:hover {
-  background-color: #069737;
+  background-color: #6a0e10;
   color: #111 !important;
 }
 a.btn_1 i,
@@ -2421,7 +2421,7 @@ header ul.top_tools > li .dropdown-access .dropdown-menu a {
 header ul.top_tools > li .dropdown-cart .dropdown-menu a.btn_1,
 header ul.top_tools > li .dropdown-access .dropdown-menu a.btn_1 {
   color: #111;
-  background-color: #069737;
+  background-color: #6a0e10;
   height: auto;
   line-height: 1.4;
 }
@@ -2732,7 +2732,7 @@ header.version_2 .search_mob_wp .form-control {
   border: none;
 }
 header.version_2 .search_mob_wp .btn_1 {
-  background-color: #069737;
+  background-color: #6a0e10;
   color: #111;
 }
 header.version_2 .search_mob_wp .btn_1:hover {
@@ -6645,7 +6645,7 @@ footer .links ul li a:after {
   outline: none;
 }
 #newsletter button[type='submit']:hover {
-  background-color: #069737;
+  background-color: #6a0e10;
   color: #222;
 }
 
