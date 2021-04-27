@@ -181,7 +181,7 @@
 	<div class="container margin_60_35">
 		<div class="main_title">
 			<h2>BRAS</h2>
-			<p>Ver promociones de productos en cuidado para el cabello</p>
+			<p></p>
 		</div>
 		<div class="owl-carousel products_carousel">
 			@each(product in cats3)
@@ -211,7 +211,7 @@
 
 	<div class="container margin_60_35">
 		<div class="main_title">
-			<h2>lencería especial</h2>
+			<h2>LENCERÌA ESPECIAL</h2>
 			<p></p>
 		</div>
 		<div class="owl-carousel products_carousel">
@@ -353,35 +353,6 @@
 	}
 </script>-->
 
-<div class="container margin_60_35">
-	<div class="main_title">
-		<h2>CUIDADO ORAL</h2>
-		<p>Promociones en variedad de productos</p>
-	</div>
-	<div class="owl-carousel products_carousel">
-		@each(product in cats5)
-		<div class="item">
-			<div class="grid_item">
-				<figure>
-					<a href="/product_detail/{{product.id}}">
-						<img class="img-responsive" style="height: 250px;" src="{{product.image}}" data-src="{{product.image}}" onError="this.onerror=null;this.src='{{ assetsUrl('placeholder.png') }}';" alt="">
-					</a>
-				</figure>
-				<a href="/product_detail/{{product.id}}">
-					<h3>{{product.name}}</h3>
-				</a>
-				<div class="price_box">
-					<span class="new_price">{{product.price}}</span>
-				</div>
-				<ul>
-					<li><a href="#" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Agregar al carrito"><i class="ti-shopping-cart"></i><span>Agregar al carrito</span></a></li>
-				</ul>
-			</div>
-			<!-- /grid_item -->
-		</div>
-		@endeach
-	</div>
-</div>
 
 <!-- logos empresas <div class="bg_gray">
 	<div class="container margin_30">
